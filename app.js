@@ -21,3 +21,4 @@ var addLength = columnLength + 5;
 var meterLength = addLength / 10;
 console.log(addLength);
 console.log(meterLength);
+

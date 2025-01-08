@@ -34,6 +34,8 @@ console.log(addLength);
 console.log(meterLength);
 
 //메서드의 타입 명시 방법법
-function add(x:number, y:number):number {
+function add(x: number, y: number): number {
   return x + y;
 }
+const obj = { width: 10, height: 15 };
+const area = obj.width * obj.height;
