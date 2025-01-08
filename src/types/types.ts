@@ -21,9 +21,15 @@ console.log(arrayOfNembers1[2]); // 30
 
 let arrayOfNembers2: Array<number>;
 arrayOfNembers2 = [6];
-arrayOfNembers2 = [6, 8, 20]; 
+arrayOfNembers2 = [6, 8, 20];
 console.log(arrayOfNembers2[2]); // 20
 
 // 해당 타입 요소만  허용 되는 배열 = 튜플이므로 선언 주의
-let singleNumberTuple: [number];
-singleNumberTuple = [5];
+//let singleNumberTuple: [number];
+//singleNumberTuple = [5];
+
+//함수의 명시적 타입 지정 방법 (매개변수 / Parameter)
+function greeter(name: string): string {
+  return "Hello, " + name;
+}
+console.log(greeter("Tom"));
