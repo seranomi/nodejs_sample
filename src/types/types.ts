@@ -70,3 +70,15 @@ object.bar = 100;
 object = "hello";
 const n: number = object;
 
+// Union 타입
+function printId(id: number | string) { // or 
+  if(typeof id === "string") {
+    console.log(id.toUpperCase());
+  } else {
+    console.log(typeof id); // number
+  }
+}
+// 단일 책임 원칙 위배 
+printId(10);
+printId("Hello");
+
