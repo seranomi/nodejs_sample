@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // Class 이용
 var Robot = /** @class */ (function () {
     // Constructor(생성자)
@@ -7,6 +22,13 @@ var Robot = /** @class */ (function () {
         this.model = model;
     }
     ;
+    // Getter
+    Robot.prototype.getName = function () {
+        return this.name;
+    };
+    Robot.prototype.getModel = function () {
+        return this.model;
+    };
     // Method(행동)
     Robot.prototype.performTask = function (task) {
         console.log("".concat(this.name, " is performing ").concat(task, "."));
@@ -23,9 +45,9 @@ var r1 = new Robot("A1-B2", "Optimus");
 var r2 = new Robot("C3-D4", "Bumble");
 var r3 = new Robot("E5-F6", "Rotus");
 // Accessing fields and Calling methods
-console.log(r1.name);
-console.log(r2.model);
-console.log(r3.status);
+console.log(r1.getName());
+console.log(r2.getModel());
+//console.log(r3.status);
 r1.performTask("Charging");
 r2.performTask("Explorering");
 r3.updateStatus("On Repair");
@@ -65,3 +87,46 @@ console.log(user2.username); // 출력 : 김철수
 // 3. 메서드 호출
 user1.study();
 user2.study();
+// 클래스의 상속
+var CleaningRobot = /** @class */ (function (_super) {
+    __extends(CleaningRobot, _super);
+    // Constructor(생성자)
+    function CleaningRobot(name, model, cleaningSchedule) {
+        var _this = _super.call(this, name, model) || this;
+        _this.status = "Active";
+        _this.cleaningSchedule = cleaningSchedule;
+        return _this;
+    }
+    ;
+    // Method(행동)
+    // override performTask() {
+    CleaningRobot.prototype.performTask = function () {
+        console.log("".concat(this.getName(), " is cleaning according to the schedule ").concat(this.cleaningSchedule.join(", "), "."));
+    };
+    return CleaningRobot;
+}(Robot));
+var CookingRobot = /** @class */ (function (_super) {
+    __extends(CookingRobot, _super);
+    // Constructor(생성자)
+    function CookingRobot(name, model, acailableMenus) {
+        var _this = _super.call(this, name, model) || this;
+        _this.acailableMenus = acailableMenus;
+        return _this;
+    }
+    ;
+    // Method(행동)
+    CookingRobot.prototype.performCleaning = function () {
+        console.log("".concat(this.getName(), " is cooking according to the menus ").concat(this.acailableMenus.join(", "), "."));
+    };
+    return CookingRobot;
+}(Robot));
+// 접근 제어자 Visivility Modifier / Access Modifier
+// public - protected - (default) - private 자바
+// JS default는 public이다.
+// public : 모든 클래스에서 접근 가능(기본값)
+// protected : 같은 클래스와 자식 클래스에서 접근 가능
+// private : 해당 클래스 내에서만 접근 가능
+var c1 = new CleaningRobot("ABC-1", "Prime", ["Sun", "Mon"]);
+console.log(c1.cleaningSchedule);
+c1.performTask();
+console.log(c1.getName());

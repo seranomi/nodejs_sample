@@ -1,15 +1,23 @@
 // Class 이용
 class Robot { // Members
     // Property(속성) 또는 Field(속성, 필드)
-    name: string;
-    model: string;
-    status: string = "Active";
+    private name: string;
+    private model: string;
+    protected status: string = "Active";
     
     // Constructor(생성자)
     constructor(name: string, model: string){
         this.name = name;
         this.model = model;
     };
+
+    // Getter
+    public getName(): string{
+        return this.name;
+    }
+    public getModel(): string{
+        return this.model;
+    }
 
     // Method(행동)
     performTask(task: string) {
@@ -27,9 +35,9 @@ let r2 = new Robot("C3-D4", "Bumble");
 let r3 = new Robot("E5-F6", "Rotus");
 
 // Accessing fields and Calling methods
-console.log(r1.name);
-console.log(r2.model);
-console.log(r3.status);
+console.log(r1.getName());
+console.log(r2.getModel());
+//console.log(r3.status);
 
 r1.performTask("Charging");
 r2.performTask("Explorering");
@@ -93,7 +101,7 @@ class CleaningRobot extends Robot{
     // Method(행동)
     // override performTask() {
     performTask() { // 다형성
-        console.log(`${this.name} is cleaning according to the schedule ${this.cleaningSchedule.join(", ")}.`);
+        console.log(`${this.getName()} is cleaning according to the schedule ${this.cleaningSchedule.join(", ")}.`);
     }
 }
 
@@ -109,7 +117,19 @@ class CookingRobot extends Robot{
 
     // Method(행동)
     performCleaning() {
-        console.log(`${this.name} is cooking according to the menus ${this.acailableMenus.join(", ")}.`);
+        console.log(`${this.getName()} is cooking according to the menus ${this.acailableMenus.join(", ")}.`);
         
     }
 }
+
+// 접근 제어자 Visivility Modifier / Access Modifier
+// public - protected - (default) - private 자바
+// JS default는 public이다.
+// public : 모든 클래스에서 접근 가능(기본값)
+// protected : 같은 클래스와 자식 클래스에서 접근 가능
+// private : 해당 클래스 내에서만 접근 가능
+
+let c1 = new CleaningRobot("ABC-1", "Prime", ["Sun", "Mon"])
+console.log(c1.cleaningSchedule);
+c1.performTask();
+console.log(c1.getName());
