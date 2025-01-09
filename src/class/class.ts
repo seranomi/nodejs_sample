@@ -79,60 +79,35 @@ user1.study();
 user2.study();
 
 // 클래스의 상속
-class CleaningRobot{
+class CleaningRobot extends Robot{
     // Property(속성) 또는 Field(속성, 필드)
-    name: string;
-    model: string;
     cleaningSchedule: string[];
     status: string = "Active";
     
     // Constructor(생성자)
     constructor(name: string, model: string, cleaningSchedule: string[]){
-        this.name = name;
-        this.model = model;
+        super(name, model);
         this.cleaningSchedule = cleaningSchedule;
     };
 
     // Method(행동)
-    performTask(task: string) {
-        console.log(`${this.name} is performing ${task}.`);
-    };
-
-    updateStatus(newStatus: string) {
-        this.status = newStatus;
-        console.log(`${this.name}s tatus is now ${this.status}`);
-    };
-
-    performCleaning() {
+    // override performTask() {
+    performTask() { // 다형성
         console.log(`${this.name} is cleaning according to the schedule ${this.cleaningSchedule.join(", ")}.`);
-
     }
 }
 
-class CookingRobot{
+class CookingRobot extends Robot{
     // Property(속성) 또는 Field(속성, 필드)
-    name: string;
-    model: string;
     acailableMenus: string[];
-    status: string = "Active";
     
     // Constructor(생성자)
     constructor(name: string, model: string, acailableMenus: string[]){
-        this.name = name;
-        this.model = model;
+        super(name, model)
         this.acailableMenus = acailableMenus;
     };
 
     // Method(행동)
-    performTask(task: string) {
-        console.log(`${this.name} is performing ${task}.`);
-    };
-
-    updateStatus(newStatus: string) {
-        this.status = newStatus;
-        console.log(`${this.name}s tatus is now ${this.status}`);
-    };
-
     performCleaning() {
         console.log(`${this.name} is cooking according to the menus ${this.acailableMenus.join(", ")}.`);
         
