@@ -160,5 +160,30 @@ interface Job { // type으로 변경하면 중복 코드 오류가 발생
 
 const myJob: Job = {
   title: "SW Engineer", 
-  company: "Tech"
+  company: "Tech", 
 }
+
+// 타입 단언 Type Assertions
+const apiResponse: any = {
+  id: 1,
+  title: "TypeScript Begins",
+  content: "This is contents of Article",
+}
+
+// // Error
+// console.log(apiResponse.like);
+
+interface Content {
+  id: number;
+  title: string;
+  content: string;
+}
+
+// Type assertions using 'as' keyword
+const content1 = apiResponse as Content;
+// Type assertions using <> bracket syntax
+const content2 = <Content>apiResponse;
+
+//console.log(content1.like); // like does not exist
+console.log(content2.id) // OK
+console.log(content2.title) // OK
