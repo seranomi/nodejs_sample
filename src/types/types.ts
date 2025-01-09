@@ -149,3 +149,16 @@ function getBear2(): Bear2 {
 const bear2 = getBear2();
 console.log(bear2.name)
 console.log(bear2.honey)
+
+// 인터페이스 병합의 차이점
+interface Job{
+  title: string;
+}
+interface Job { // type으로 변경하면 중복 코드 오류가 발생
+  company: string;
+}
+
+const myJob: Job = {
+  title: "SW Engineer", 
+  company: "Tech"
+}
