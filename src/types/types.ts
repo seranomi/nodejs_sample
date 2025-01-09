@@ -81,4 +81,25 @@ function printId(id: number | string) { // or
 // 단일 책임 원칙 위배 
 printId(10);
 printId("Hello");
+// 타입 별칭으로도 Union 같이 다른 타입들도 커스텀 가능
+type ID = number | string;
 
+// Type Alias & Interface
+function printCoord(point: Point) {
+  console.log("The coordinate's x value is " + point.x);
+  console.log("The coordinate's y value is " + point.y);
+}
+
+function calculateDistance(point1: Point, point2: Point): number {
+  const locationX = point2.x -point1.x;
+  const locationY = point2.y -point1.y;
+  return Math.sqrt(locationX ** 2 + locationY ** 2)
+}
+
+printCoord({ x: 100, y: 100 });
+// 해당 객체의 속성이 같다면,, 하지만 파라미터가 point1, 2, 3 계속해서 중복코드가 늘어남
+// 사용자 정의 타입을 사용 할 수 있음
+type Point = { // c구조체?
+  x: number,
+  y: number
+}
